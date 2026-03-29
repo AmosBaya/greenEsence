@@ -1,10 +1,54 @@
 const mongoose = require('mongoose');
 
-const Blog = new mongoose.Schema({
+const blogSchema =  mongoose.Schema({
     title: {
         type: String,
         required: true
     },
-    
+    exerpt:{
+        type:String,
+        maxLength:300
+    },
+    content:{
+        type:String,
+        required:true
+    },
+    image:{
+        type:String,
+        default:""
+    },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    tags:{
+        type:String,
+        lowercase:true
+    },
+    readTime:{
+        type:Number,
+        default:1
+    },
+    status: {
+      type: String,
+      enum: ["draft", "published"],
+      default: "draft",
+    },
+    seo: {
+      metaTitle: String,
+      metaDescription: String,
+      keywords: [String],
+    },
 
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+
+    timestamps: {
+        createdAt: 'publishedAt'
+    } 
 })
+
+module.exports = mongoose.model('Blog', blogSchema);
