@@ -1,0 +1,81 @@
+# ----------------------
+# Dependencies
+# ----------------------
+node_modules/
+.pnpm-store/
+
+# ----------------------
+# Logs
+# ----------------------
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ----------------------
+# Environment variables
+# ----------------------
+.env
+.env.*
+!.env.example
+
+# ----------------------
+# Build outputs
+# ----------------------
+dist/
+build/
+.next/
+out/
+
+# ----------------------
+# Cache / temp files
+# ----------------------
+.cache/
+.tmp/
+.temp/
+*.tsbuildinfo
+
+# ----------------------
+# OS files
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# IDE / Editor
+# ----------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ----------------------
+# Nodemon
+# ----------------------
+nodemon.json
+
+# ----------------------
+# Testing
+# ----------------------
+coverage/
+
+# ----------------------
+# Misc
+# ----------------------
+*.pid
+*.seed
+*.pid.lock
+
+# ----------------------
+# MongoDB (local data)
+# ----------------------
+data/
+*.db
+
+# ----------------------
+# pnpm lockfile (KEEP THIS TRACKED)
+# ----------------------
+# DO NOT ignore this file:
+# pnpm-lock.yaml
