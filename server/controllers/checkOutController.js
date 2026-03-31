@@ -18,7 +18,7 @@ exports.addCustomerDetails = async (req, res)=>{
         res.status(201).json({Message:"Order Placed Successfully!"});
 
     } catch (err) {
-        res.status(400).json({Message:"Error in placing Order", Error: err.message}):
+        res.status(400).json({Message:"Error in placing Order", Error: err.message})
     }
 }
 
