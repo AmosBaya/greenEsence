@@ -1,25 +1,51 @@
 const mongoose = require('mongoose');
 
 const oderSchema = mongoose.Schema({
-    customerId:{
-        type:mongoose.Schema.ObjectId,
-        ref:'CustomerDetails',
-        required:true
+
+    customerDetails:{
+        customerName:{
+            type:String,
+            required:true,
+            trim:true
+        },
+
+        email:{
+            type:String,
+            required:true,
+            lowerCase:true,
+            trim:true
+        },
+
+        phone:{
+            type:Number,
+            required:true
+        },
+
+        location:{
+            type:String,
+            required:true
+        }
     },
+    
 
     products:[{
         productId:{
             type:mongoose.Schema.ObjectId,
             ref:'Products',
             required:true
-        }
+        },
+        name: {
+            type: String
+        }, 
+        price: {
+            type: Number
+        }, 
+        quantity:{
+            type:Number,
+            required:true,
+            min:1
+        },
     }],
-
-    quantity:{
-        type:Number,
-        required:true,
-        min:true
-    },
 
     total:{
         type:Number,
