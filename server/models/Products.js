@@ -7,7 +7,8 @@ const productSchema = mongoose.Schema({
     },
 
     description:{
-        type:String
+        type:String,
+        default:""
     },
 
     price:{
@@ -15,21 +16,30 @@ const productSchema = mongoose.Schema({
         required:true
     },
 
+    category:{
+        type:mongoose.Schema.ObjectId,
+        ref:'Categories',
+        required:true
+    },
+
     benefits:{
-        type:String
+        type:String,
+        default:""
     },
 
     howToUse:{
-        type:String
+        type:String,
+        default:""
     },
 
     images:{
-        type:[String]
+        type:[String],
+        default:""
     },
 
-    thumbnail: {
+    /*thumbnail: {
         type: String,
-    },
+    },*/
 
     deleted: {
         type: Boolean,
