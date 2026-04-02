@@ -1,6 +1,6 @@
 const Order = require('../models/Order');
 
-exports.addCustomerDetails = async (req, res)=>{
+exports.checkOut = async (req, res)=>{
     try {
         const { 
             customerDetails,

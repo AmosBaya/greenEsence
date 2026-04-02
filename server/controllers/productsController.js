@@ -67,13 +67,33 @@ exports.deleteProduct = async (req, res)=>{
 
 // ROUTES FOR ALL
 //view all products
-exports.viewProducts = async (req, res)=>{
+exports.viewAllProducts = async (req, res)=>{
     try {
         const products = await Product.find();
+
+        if(!products){
+            return res.status(404).json({Message:"Products not found"})
+        }
+
         res.status(200).json(products)
     } catch (error) {
-        res.status(400).json({ Message: "Products not found", Error: err.message });
+        res.status(400).json({ Message: "Error in fetching the products", Error: err.message });
     }
 
+}
+
+exports.viewSingleProduct = async (req, res)=>{
+    try {
+        const singleProduct = await Product.findOne(req.params.id);
+
+        if(!singleProduct){
+            return res.status(404).json({Message:"Product not found"})
+        }
+
+        res.status(200).json(singleProduct);
+
+    } catch (error) {
+        res.status(400).json({ Message: "Error in fetching the product", Error: err.message });
+    }
 }
 

@@ -46,9 +46,10 @@ const blogSchema =  mongoose.Schema({
       default: false,
     },
 
-    timestamps: {
-        createdAt: 'publishedAt'
-    } 
-})
+},
+    {
+        timestamps: true
+    }
+)
 
 module.exports = mongoose.model('Blog', blogSchema);

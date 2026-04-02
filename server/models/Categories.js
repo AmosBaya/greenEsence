@@ -8,11 +8,16 @@ const categorySchema = mongoose.Schema({
         trim:true
     },
 
-    slug:{
-        type:String,
-        required:true,
-        lowercase:true,
-        unique: true
+   /* slug: {
+        type: String,
+        unique: true,
+        lowercase: true
+    },*/
+
+    type: {
+        type: String,
+        enum: ['product', 'blog', 'both'],
+        default: 'both'
     },
 
     description:{
@@ -20,11 +25,15 @@ const categorySchema = mongoose.Schema({
         default:""
     },
 
-    timestamps:{
-        createdAt:'addedAt'
+},
+    {
+     timestamps: true
     }
+    
+);
 
-});
+
+
 
 module.exports = mongoose.model("Category", categorySchema);
 

@@ -59,9 +59,10 @@ const oderSchema = mongoose.Schema({
         default:"Pending"
     },
 
-    timestamps: {
-        createdAt: 'addedAt'
-    } 
-});
+},
+    {
+        timestamps: true
+    }
+);
 
 module.exports = mongoose.model("Order", oderSchema);

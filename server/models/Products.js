@@ -22,6 +22,7 @@ const productSchema = mongoose.Schema({
         required:true
     },
 
+
     benefits:{
         type:String,
         default:""
@@ -45,11 +46,12 @@ const productSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-
-    timestamps: {
-        createdAt: 'addedAt'
-    } 
         
-});
+},
+    {
+     timestamps: true
+    }
+
+);
 
 exports.module = mongoose.model('Product', productSchema);
