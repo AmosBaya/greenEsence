@@ -48,17 +48,28 @@ exports.createProduct = async (req, res)=>{
 //update a product
 exports.updateProduct = async (req, res)=>{
    try {
-    const updatedProduct = await Product.findOneAndUpdate(
+    const updatedProduct = await Product.findByIdAndUpdate(
         req.params.id,
         req.body,
         {new: true}
     );
 
-    res.json(200).json(updatedProduct)
+    if(!updatedProduct){
+        return res.status(404).json({
+            message:"Product not found",
+        })
+    }
+
+    res.status(200).json({
+            message:"Product updated successfully",
+            data: updatedProduct
+    })
+
    } catch (err) {
 
-    res.status(400).json({ Message: "Product not updated", Error: err.message });
-
+    res.status(400).json({ 
+        message: "Product not updated", 
+        error: err.message });
    }
 }
 
@@ -66,9 +77,22 @@ exports.updateProduct = async (req, res)=>{
 exports.deleteProduct = async (req, res)=>{
     try {
         const deletedProduct = await Product.findByIdAndDelete(req.params.id);
-        res.status(200).json({Message: "Product deleted successfully"})
-    } catch (error) {
-         res.status(400).json({ Message:"PRODUCT NOT DELETED" , Error: err.message });
+
+        if(!deletedProduct){
+            return res.status(404).json({
+                message:"Product not found"
+            });
+        }
+
+        res.status(200).json({
+            message: "Product deleted successfully",
+            data: deletedProduct
+        });
+
+    } catch (err) {
+         res.status(400).json({ 
+            message:"PRODUCT NOT DELETED", 
+            error: err.message });
     }
 }
 
@@ -79,28 +103,46 @@ exports.viewAllProducts = async (req, res)=>{
         const products = await Product.find();
 
         if(!products){
-            return res.status(404).json({Message:"Products not found"})
+            return res.status(404).json({
+                message:"Products not found"
+            })
         }
 
-        res.status(200).json(products)
-    } catch (error) {
-        res.status(400).json({ Message: "Error in fetching the products", Error: err.message });
+        res.status(200).json({
+            message:"Product list view successfully",
+            data: products
+        });
+
+    } catch (err) {
+        res.status(400).json({ 
+            message: "Error in fetching the products", 
+            error: err.message });
     }
 
 }
 
 exports.viewSingleProduct = async (req, res)=>{
     try {
-        const singleProduct = await Product.findOne(req.params.id);
+        const singleProduct = await Product.findById(
+            req.params.id
+        );
 
         if(!singleProduct){
-            return res.status(404).json({Message:"Product not found"})
+            return res.status(404).json({
+                message:"Product not found"
+            })
         }
 
-        res.status(200).json(singleProduct);
+        res.status(200).json({
+            message:"Single product view success",
+            data: singleProduct
+        });
 
-    } catch (error) {
-        res.status(400).json({ Message: "Error in fetching the product", Error: err.message });
+    } catch (err) {
+        res.status(400).json({ 
+            message: "Error in fetching the product", 
+            error: err.message 
+        });
     }
 }
 
