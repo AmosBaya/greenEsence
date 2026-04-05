@@ -18,6 +18,10 @@ exports.createProduct = async (req, res)=>{
             return res.status(400).json({Error: "Product name, price and category are needed "})
         }
 
+        if (typeof price !== 'number') {
+            return res.status(400).json({ error: "Price must be a number" });
+        }
+
         const newProduct = new Product(
                                 {
                                     productName, 
@@ -31,7 +35,10 @@ exports.createProduct = async (req, res)=>{
                             )
         await newProduct.save();
         
-        res.status(201).json(product, {Message: "Product created Successfully"})
+        res.status(201).json({
+            message: "Product created Successfully",
+            data: newProduct
+        });
     } catch (err) {
         res.status(500).json({Message:"Internal server error, product not created", Error:err.message});
     }
