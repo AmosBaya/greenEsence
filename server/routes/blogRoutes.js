@@ -10,6 +10,6 @@ const {
 
 router.get("/fullBlog/:id", viewFullBlog);
 
-router.get("blogs", viewBlogs);
+router.get("/all", viewBlogs);
 
 module.exports = router;

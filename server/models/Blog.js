@@ -13,9 +13,9 @@ const blogSchema =  mongoose.Schema({
         type:String,
         required:true
     },
-    image:{
-        type:String,
-        default:""
+    images:{
+        type:[String],
+        default:[]
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
@@ -23,7 +23,7 @@ const blogSchema =  mongoose.Schema({
       required: true,
     },
     tags:{
-        type:String,
+        type:[String],
         lowercase:true
     },
     readTime:{
