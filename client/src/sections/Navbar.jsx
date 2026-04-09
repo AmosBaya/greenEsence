@@ -101,7 +101,7 @@ export default function Component() {
 
         {/* Right side */}
       <div className="flex flex-1 items-center justify-end gap-2">
-        <Button className="flex items-center gap-2 bg-red-600">
+        <Button className="flex items-center gap-2 bg-orange-600">
             <ShoppingCartIcon size={18} />
             <span className="hidden md:inline">Shop Now</span>
         </Button>
