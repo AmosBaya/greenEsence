@@ -1,5 +1,6 @@
 import { ShoppingCartIcon } from "lucide-react";
 import { useId } from "react";
+import { Link } from "react-router-dom";
 
 import Logo from "../components/logo";
 import { Button } from "@/components/ui/button";
@@ -17,14 +18,14 @@ import {
 
 // Updated navigation links
 const navigationLinks = [
-  { active: true, href: "#", label: "Home" },
-  { href: "#", label: "Blog" },
-  { href: "#", label: "Shop" },
-  { href: "#", label: "About" },
-  { href: "#", label: "Contact" },
+  { active: true, to: "/", label: "Home" },
+  { to: "/blog-page", label: "Blog" },
+  { to: "/shop-page", label: "Shop" },
+  { to: "/about", label: "About" },
+  { to: "/contat", label: "Contact" },
 ];
 
-export default function Component() {
+export default function NavBar() {
   const id = useId();
 
   return (
@@ -60,12 +61,10 @@ export default function Component() {
                 <NavigationMenuList className="flex-col items-start gap-1">
                   {navigationLinks.map((link) => (
                     <NavigationMenuItem className="w-full" key={link.label}>
-                      <NavigationMenuLink
-                        active={link.active}
-                        className="py-2 px-2"
-                        href={link.href}
-                      >
-                        {link.label}
+                      <NavigationMenuLink asChild active={link.active}>
+                        <Link to={link.to} className="py-2 px-2 block">
+                          {link.label}
+                        </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                   ))}
@@ -76,9 +75,9 @@ export default function Component() {
 
           {/* Logo */}
           <div className="flex items-center">
-            <a className="text-primary hover:text-primary/90" href="#">
+            <Link className="text-primary hover:text-primary/90" to="/">
               <Logo />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -87,12 +86,13 @@ export default function Component() {
           <NavigationMenuList className="gap-6">
             {navigationLinks.map((link) => (
               <NavigationMenuItem key={link.label}>
-                <NavigationMenuLink
-                  active={link.active}
-                  className="font-medium text-foreground hover:text-primary"
-                  href={link.href}
-                >
-                  {link.label}
+                <NavigationMenuLink asChild active={link.active}>
+                  <Link
+                    to={link.to}
+                    className="font-medium text-foreground hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
@@ -101,10 +101,12 @@ export default function Component() {
 
         {/* Right side */}
       <div className="flex flex-1 items-center justify-end gap-2">
-        <Button className="flex items-center gap-2 bg-orange-600">
+        <Link to='/shop-page'>
+          <Button className="flex items-center gap-2 bg-orange-600">
             <ShoppingCartIcon size={18} />
             <span className="hidden md:inline">Shop Now</span>
-        </Button>
+          </Button>
+        </Link>
      </div>
 
       </div>

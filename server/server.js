@@ -17,14 +17,20 @@ const categoryRoutes = require('./routes/categoryRoutes')
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
 //Routes
-app.use("/api/product", productRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api/order", checkOutRoutes);
-app.use("/api/blog", blogRoutes);
+app.use("/api/blogs", blogRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/admin", adminOnlyRoutes);
 

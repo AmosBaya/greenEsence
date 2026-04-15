@@ -9,8 +9,8 @@ const {
 } = require('../controllers/productsController');
 
 
-router.get("/all", viewAllProducts);
+router.get("/", viewAllProducts);
 
-router.get("/single/:id", viewSingleProduct);
+router.get("/:id", viewSingleProduct);
 
 module.exports = router;

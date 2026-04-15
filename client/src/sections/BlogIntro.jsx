@@ -1,7 +1,20 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { getBlogs } from "@/lib/services";
+import { useEffect, useState } from "react";
 
-export default function BlogSection({ blogs = [] }) {
+export default function BlogSection() {
+
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    getBlogs()
+      .then((res) => setBlogs(res.data.data))
+      .catch(console.error);
+  }, []);
+
+
+
   const visibleBlogs = blogs
     .filter((blog) => blog.status === "published" && !blog.isDeleted)
     .slice(0, 6);

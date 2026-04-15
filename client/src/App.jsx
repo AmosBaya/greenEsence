@@ -1,21 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './sections/Navbar'
-import Hero from './sections/Hero'
-import Footer from './sections/Footer'
-import BlogSection from './sections/BlogIntro'
-import ProductSection from './sections/ProductsSection'
+import BlogPage from './pages/blogpage';
+import HomePage from './pages/Home'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProductDetail from './pages/productDetail';
+import ShopPage from './pages/shop';
+import SingleBlog from './pages/blogPost';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <Navbar />
-      <Hero />
-      <BlogSection />
-      <ProductSection />
-      <Footer/>
+
+     <BrowserRouter>
+        <Routes>
+          <Route path='/' element={ <HomePage />}/>
+          <Route path='/blog-page' element={ <BlogPage />}/>
+          <Route path='/shop-page' element={ <ShopPage />}/>
+          <Route path='/single-blog' element={ <SingleBlog />}/>
+          <Route path='/product-details' element={<ProductDetail/>}/>
+        </Routes>
+     </BrowserRouter>
+
+
     </>
   )
 }

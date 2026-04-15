@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import heroImg from "../images/hero.jpg"
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -46,16 +47,21 @@ export default function Hero() {
 
           {/* Buttons */}
           <div className="mt-8 flex gap-4">
-            <Button className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-xl">
-              Shop Now
-            </Button>
-
-            <Button
-              variant="outline"
-              className="border-gray-300 px-6 py-3 rounded-xl"
-            >
-              Read Blog
-            </Button>
+            <Link to='/shop-page'>
+              <Button className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-xl">
+                Shop Now
+              </Button>
+            </Link>
+            
+            <Link to='/blog-page'>
+              <Button
+                variant="outline"
+                className="border-gray-300 px-6 py-3 rounded-xl"
+              >
+                Read Blog
+              </Button>
+            </Link>
+              
           </div>
         </motion.div>
       </div>
